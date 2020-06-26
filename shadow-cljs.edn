@@ -1,0 +1,47 @@
+{:source-paths
+ ["src/"
+  "test/"]
+
+ :dependencies
+ [[org.clojure/core.async "1.2.603"]
+  [com.cognitect/transit-cljs "0.8.264"]
+  [medley "1.3.0"]
+  [com.rpl/specter "1.1.3"]
+  [pjstadig/humane-test-output "0.10.0"]
+  [expound "0.8.5"]
+  [lambdaisland/glogi "1.0.63"]]
+
+ :builds
+ {
+  :dev
+  {:target :node-script
+   :entries [main]
+   :output-to "out/node/main.js"
+   :main main-nodejs/main-test}
+
+  :test
+  {:target :node-test
+   :output-to "out/test/test.js"
+   :ns-regexp "-test$"
+   :autorun   true
+   :closure-defines {goog.debug.LOGGING_ENABLED true}
+   }
+
+  :screeps-local
+  {
+   :target :screeps
+   :entries [main]
+   :output-to "/var/home/ramblurr/.var/app/com.valvesoftware.Steam/.config/Screeps/scripts/127_0_0_1___21025/default/main.js"
+   :output-to-lib "/var/home/ramblurr/.var/app/com.valvesoftware.Steam/.config/Screeps/scripts/127_0_0_1___21025/default/lib.js"
+   :closure-defines {goog.debug.LOGGING_ENABLED true}
+   }
+
+  :mmo
+  {
+   :target :screeps
+   :entries [main]
+   :output-to "/var/home/ramblurr/.var/app/com.valvesoftware.Steam/.config/Screeps/scripts/screeps.com/legion2020/main.js"
+   :output-to-lib "/var/home/ramblurr/.var/app/com.valvesoftware.Steam/.config/Screeps/scripts/screeps.com/legion2020/lib.js"
+   :closure-defines {goog.debug.LOGGING_ENABLED true}
+   }
+  }}
